@@ -2,16 +2,7 @@
 
 Trong tài liệu này chúng ta sẽ tìm hiểu về "Các khóa được đặt theo các câu lệnh SQL khác nhau trong InnoDB"
 
-## Table of Contents
-1. Introduction
-2. Types of Locks
-3. Locks Set by SELECT Statements
-4. Locks Set by INSERT Statements
-5. Locks Set by UPDATE Statements
-6. Locks Set by DELETE Statements
-7. Conclusion
-
-## Introduction
+## Nội dung
 Locking read, một câu lệnh **UPDATE** hoặc **DELETE** thường thiết lập khóa bản ghi trên mọi chỉ mục (index record) được quét trong quá trình xử lý một câu lệnh SQL. 
 Điều này không phụ thuộc vào việc câu lệnh có điều kiện WHERE để loại trừ hàng (row) hay không. InnoDB không ghi nhớ chính xác điều kiện WHERE, mà chỉ biết phạm vi chỉ mục nào đã được quét. Các khóa này thường là khóa next-key (khóa kế tiếp), cũng chặn các thao tác chèn (insert) vào “gap” ngay trước bản ghi. Tuy nhiên, việc gap locking có thể được vô hiệu hóa một cách rõ ràng, điều này khiến next-key locking không được sử dụng. Mức độ cô lập giao dịch (transaction isolation level) cũng có thể ảnh hưởng đến loại khóa được thiết lập.
 
